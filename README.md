@@ -4,6 +4,8 @@ Public repository containing a model for forecasting Covid-19 cases, admissions 
 
 This repository contains supporting data and Matlab code for the article "Near-term forecasting of Covid-19 cases and hopsitalisations in Aotearoa New Zealand" by Plank et al. 
 
+Results in the article were generated using the commit tagged 'v1.0'.
+
 
 
 
