@@ -16,10 +16,16 @@ function epiDataCombined = processData(epiData, hospData, date0)
 %hospData = hospData(hospData.t <= max(epiData.t)+1, :);      
 %epiData = outerjoin(epiData, hospData, 'Keys', 't', 'MergeKeys', 1);   % outer join retains all data and if one table is missing data it is filled with NaN
 
-epiData_tMax = epiData.t(find(~isnan(epiData.nCasesByAge(:, 1)), 1, 'last'));
-hospData_tMax = hospData.t(find(~isnan(hospData.Hosp), 1, 'last'));
+epiData_tMax = max(epiData.t);
+hospData_tMax = max(hospData.t);
 if epiData_tMax > hospData_tMax
-    fprintf('\nWarning: epiData more recent that hospital occupancy data - you may need to refresh covid-cases-in-hospital-counts-location.xslx\n')
+    fprintf('\nWarning: epiData (%s) more recent that hospital occupancy data (%s) - padding occupancy data with NaNs - you may need to refresh covid-cases-in-hospital-counts-location.xslx\n', epiData_tMax, hospData_tMax)
+    % Pad hospData table prior to merging
+    tMaxFlag = hospData.t == max(hospData.t);        % flag for entries in hospData corresponding to the last day of data 
+    tbl = repmat(  hospData(tMaxFlag, :),  days(epiData_tMax - hospData_tMax), 1 );
+    tbl.t = repelem(  (hospData_tMax+1:epiData_tMax)', sum(tMaxFlag) );
+    tbl.Hosp = nan(height(tbl), 1);
+    hospData = [hospData; tbl];
 end
 
 epiDataCombined = innerjoin(epiData, hospData, 'Keys', {'t', 'area'});    % innerjoin retains only dates for which there are records in both epiSurv and hospitalisation data. This has the effect of truncating the hospitalisation dataset at the latest date for which case data is available (or truncating the case data if the latest hospitalisation data hasn't been downloaded, in which case a warning will be issued)

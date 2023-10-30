@@ -20,10 +20,12 @@ nAges = length(ageBreaks);
 tIndHosp = epiData.t > epiData.t(end)-par.hospModel_wStart & epiData.t <= epiData.t(end)-par.hospModel_wEnd;
 % Data for probability of hospitalistion in each age band (proportion of cases admitted in a 7-day moving window):
 pHosp = smoothdata(epiData.nHospByAge_DOR, 1, 'movmean', 7)./smoothdata(epiData.nCasesByAge, 1, 'movmean', 7);
-fittedFlag = min(pHosp) > 0;      % flag indicating whether all vlaues of pHosp are strictly positive for each age bands
+fittedFlag = min(pHosp(tIndHosp, :)) > 0;      % flag indicating whether all vlaues of pHosp are strictly positive in the relevant time window for each age band
 
 if sum(fittedFlag) < nAges
-    fprintf('Warning: unable to fit full CHR model in %i/%i age groups due to zeros in smoothed p(hosp) values\n', nAges-sum(fittedFlag), nAges)
+    fprintf('Warning: unable to fit full CHR model in age groups [')
+    fprintf('%i ', find(~fittedFlag))
+    fprintf('] due to zeros in smoothed p(hosp) values\n')
 end
 
 % logit transform for fitting:
