@@ -27,7 +27,7 @@ end
 
 
 figure(1);
-subplot(1, 2, 1)
+subplot(2, 1, 1)
 for iDate = 1:nDates
     inFlag = epiData{nDates+1-iDate}.area == areaName;
     plot(epiData{nDates+1-iDate}.t(inFlag), epiData{nDates+1-iDate}.nCases(inFlag))
@@ -35,10 +35,11 @@ for iDate = 1:nDates
     hold on
 end
 ylabel('daily cases')
+legend(string(fliplr(fdts-1)))
 title('(a)')
 
 
-subplot(1, 2, 2)
+subplot(2, 1, 2)
 for iDate = 1:nDates
     inFlag = epiData{nDates+1-iDate}.area == areaName;
     plot(epiData{nDates+1-iDate}.t(inFlag), epiData{nDates+1-iDate}.nHosp_DOA(inFlag))
@@ -46,6 +47,5 @@ for iDate = 1:nDates
     hold on
 end
 ylabel('new daily admissions')
-legend(string(fliplr(fdts-1)))
 title('(b)')
 
