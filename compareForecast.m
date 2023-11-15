@@ -128,7 +128,7 @@ for iComp = 1:nComps
     perf.occBias(iComp) = nanmean(forecastPart.bias_Ht);
     
     % Make n-step ahead plots
-    h = makePlots(forecastPart, min(forecastPart.t)-14, max(forecastPart.t), 1, sprintf('%i day ahead forecast ', nStepAhead(iComp)) );
+    h = makePlots(forecastPart, min(forecastPart.t), max(forecastPart.t), 1, sprintf('%i day ahead forecast ', nStepAhead(iComp)) );
     if savLbl ~= ""
         fSav = sprintf("figures/n%idayAhead", nStepAhead(iComp)) + savLbl + ".png";
         saveas(h, fSav);

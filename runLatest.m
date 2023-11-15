@@ -3,6 +3,9 @@
 clear 
 close all
 
+rng(56345);     % for reproducibility
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Basic parameters 
 

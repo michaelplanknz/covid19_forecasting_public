@@ -90,6 +90,7 @@ pCasesLow = pCasesModelled - 1.96*squeeze(std(pCasesSamp));
 
 % Plotting
 greyCol = [0.6 0.6 0.6];
+greenCol = [0 0.6 0.2];
 myColors = colororder;
 myColors = [myColors; 0 0 0; 1 0 0; 0 1 0; 0.3 0.3 0; 0.3 0 0.3; 0 0.3 0.3; 0.3 0 0; 0 0.3 0; 0 0 0.3];
 
@@ -180,10 +181,10 @@ for iAge = 1:nAges
     subplot(3, 4, iAge)
     hold on
     plot(t, pCasesSamp(1:nToPlot, :, iAge), 'Color', greyCol)
-    plot(t, pCasesModelled(:, iAge), 'r-')
-    plot(t, pCasesLow(:, iAge), 'r--')
-    plot(t, pCasesHi(:, iAge), 'r--')
-    plot(epiDataTest.t, pCases(:, iAge), 'b.-')
+    plot(t, pCasesModelled(:, iAge), 'b-')
+    plot(t, pCasesLow(:, iAge), 'b--')
+    plot(t, pCasesHi(:, iAge), 'b--')
+    plot(epiDataTest.t, pCases(:, iAge), '.-', 'color', greenCol)
     if mod(iAge, 4) == 1
         ylabel('proportion of cases in age group')
     end
@@ -204,10 +205,10 @@ for iAge = 1:nAges
     subplot(3, 4, iAge)
     hold on
     plot(t, pHospSamp(1:nToPlot, :, iAge), 'Color', greyCol)
-    plot(t, pHospModelled(:, iAge), 'r-')
-    plot(t, pHospLow(:, iAge), 'r--')
-    plot(t, pHospHi(:, iAge), 'r--')
-    plot(epiDataTest.t, pHosp(:, iAge), 'b.-')
+    plot(t, pHospModelled(:, iAge), 'b-')
+    plot(t, pHospLow(:, iAge), 'b--')
+    plot(t, pHospHi(:, iAge), 'b--')
+    plot(epiDataTest.t, pHosp(:, iAge), '.-', 'color', greenCol)
     if mod(iAge, 4) == 1
         ylabel('CHR');
     end
