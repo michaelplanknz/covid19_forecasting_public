@@ -1,4 +1,4 @@
-function [Rt, It, Zt, Ct, LL] = runPF(t, epiData, ItoR_array, ItoR_relFreq, par)
+function [Rt, It, Zt, Ct, LL, ESS] = runPF(t, epiData, ItoR_array, ItoR_relFreq, par)
 
 % Function to run the particle filter on given input data
 %
@@ -30,7 +30,7 @@ Rt = zeros(par.nParticles, nSteps);
 It = zeros(par.nParticles, nSteps);
 Zt = zeros(par.nParticles, nSteps);
 LL = zeros(par.nParticles, nSteps);
-ESS = zeros(1, nSteps);
+ESS = par.nParticles*ones(nSteps, 1);
 DOWindex = mod(datenum(t), 7)+1;
 
 % Initialise variables during the burn in period

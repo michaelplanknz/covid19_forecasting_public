@@ -120,7 +120,7 @@ if fExist == 1
         % Set up array of times including forecast period
         t = [epiDataArea.t; (epiDataArea.t(end)+1:readDate-1+par.forecastPeriod)'];
         
-        [Rt, It, Zt, Ct, LL] = runPF(t, epiDataArea, ItoR_array, ItoR_relFreq, par);
+        [Rt, It, Zt, Ct, LL, ESS] = runPF(t, epiDataArea, ItoR_array, ItoR_relFreq, par);
         
         
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -146,7 +146,7 @@ if fExist == 1
     
         forecastDate = repmat(readDate-1, length(t), 1);
         area = repmat(areaName(iArea), length(t), 1);
-        results{iArea} = table(forecastDate, area, t, Rq, Iq, Cq, Cq_smoothed, Aq, Dq, Hq);
+        results{iArea} = table(forecastDate, area, t, Rq, Iq, Cq, Cq_smoothed, Aq, Dq, Hq, ESS);
         fprintf('done\n');
         
         if plotFlag == 1 && iArea == 1
