@@ -137,7 +137,7 @@ end
 
 % Plot score and bias
 h = figure;
-h.Position = [680   654   828   344];
+h.Position = [ 738   578   828   344];
 subplot(1, 2, 1)
 plot(perf.tAhead(2:end)/7, perf.casesScore(2:end), 'o-', perf.tAhead/7, perf.admScore, 'o-', perf.tAhead(2:end)/7, perf.occScore(2:end), 'o-' )
 ylim([0 0.3])
@@ -151,4 +151,7 @@ yline(0, 'k:');
 xlabel('time horizon (weeks)')
 ylabel('forecast bias')
 title('(b)')
-
+if savLbl ~= ""
+    fSav = "figures/scores" + savLbl + ".png";
+    saveas(h, fSav);
+end
