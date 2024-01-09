@@ -198,6 +198,7 @@ for iAge = 1:nAges
     xlim([epiDataFit.t(end)-par.ageSplitModel_wStart-7, epiDataTest.t(end)])
     title(ageLbl(iAge));
 end
+sgtitle('(a)')
 
 
 figure(3)
@@ -222,3 +223,5 @@ for iAge = 1:nAges
     xlim([epiDataFit.t(end)-par.hospModel_wStart-7, epiDataTest.t(end)])
     title(ageLbl(iAge));
 end
+sgtitle('(b)')
+
