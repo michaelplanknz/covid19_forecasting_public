@@ -2,7 +2,7 @@
 
 Public repository containing a model for forecasting Covid-19 cases, admissions and hospital occupancy in New Zealand. 
 
-This repository contains supporting data and Matlab code for the article "Near-term forecasting of Covid-19 cases and hopsitalisations in Aotearoa New Zealand" by Plank et al. 
+This repository contains supporting data and Matlab code for the article [Near-term forecasting of Covid-19 cases and hopsitalisations in Aotearoa New Zealand](https://doi.org/10.1371/journal.pcbi.1011752) by Plank et al. 
 
 
 
@@ -25,11 +25,11 @@ The forecast date and areas can be specified by setting the following variables 
 
 # Data
 
-The `data` folder contains datasets generated from EpiSurv/community case data supplied by MOH on one of a series of weekly time points, plus hospital occupancy data downloaded from https://github.com/minhealthnz/nz-covid-data/tree/main/cases.
+The `data` folder contains datasets generated from EpiSurv/community case data supplied by MOH on one of a series of weekly time points, plus hospital occupancy data downloaded from [https://github.com/minhealthnz/nz-covid-data/tree/main/cases](https://github.com/minhealthnz/nz-covid-data/tree/main/cases).
 
 The required data files that the model reads in are as follows:
 
-* covid-cases-in-hospital-counts-location.xlsx contains time series for hospital occupancy in each Health District, downloaded from https://github.com/minhealthnz/nz-covid-data/tree/main/cases
+* covid-cases-in-hospital-counts-location.xlsx contains time series for hospital occupancy in each Health District, downloaded from [https://github.com/minhealthnz/nz-covid-data/tree/main/cases](https://github.com/minhealthnz/nz-covid-data/tree/main/cases)
 
 * epiData_YYYY-MM-DD.csv contains time series for:
 1. nCasesByAge_i     the number of cases reported in age group i on day t. 
